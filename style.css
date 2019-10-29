@@ -26,7 +26,7 @@ table {
 }
 
 td {
-	border: 1px solid black;
+	border: 5px solid black;
 	text-align: center;
 }
 
@@ -53,3 +53,33 @@ td {
 .click {
 	border: 5px dotted red;
 }
+
+.congratulation {
+	width: 31%;
+	height: 30%;
+	border: 5px solid red;
+	border-radius: 10px;
+	padding: 3px;
+	position: absolute;
+	top: 35%;
+    left: 34%;
+	text-align: center;
+	font-size: 5em;
+	background-color: yellow;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

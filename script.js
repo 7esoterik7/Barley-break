@@ -56,6 +56,15 @@ function checkVictory(arrJs, arrNode){
 	return true;
 }
 
+function isClassClick(arrNode) {
+	for (var i = 0; i < arrNode.length; i++) {
+		if (arrNode[i].classList.contains('click')) {
+			return false
+		}
+	}
+	return true
+}
+
 
 var tds = document.querySelectorAll('td');
 var arrSrcImg = [];
@@ -86,6 +95,7 @@ var buttonMix = document.querySelector('#mix');
 var beginPlay = document.querySelector('#beginPlay');
 var advice = document.querySelector('#advice');
 var tbody = document.querySelector('tbody');
+var body = document.querySelector('body');
 
 
 buttonMix.addEventListener('click', function() {
@@ -96,6 +106,7 @@ beginPlay.addEventListener('click', function() {
 	buttonMix.classList.add('hidden');
 	beginPlay.classList.add('hidden');
 	advice.classList.remove('hidden');
+	//mix();
 	
 	var tds = getTds();
 	
@@ -107,8 +118,8 @@ beginPlay.addEventListener('click', function() {
 	    var tdsClick = tbody.querySelectorAll('.click');
 		
 		if (tdsClick.length === 2) {
-		    img0 = tdsClick[0].querySelector('img');
-		    img1 = tdsClick[1].querySelector('img');
+		    var img0 = tdsClick[0].querySelector('img');
+		    var img1 = tdsClick[1].querySelector('img');
 		}
 		
 		if (tdsClick.length === 2 && (img0.src === emptyImg || img1.src === emptyImg) && checkNoDiagonal()) {
@@ -118,19 +129,19 @@ beginPlay.addEventListener('click', function() {
 			
 			tdsClick[0].classList.remove('click');
 			tdsClick[1].classList.remove('click');
+			
+			tds = getTds();
+	        if (checkVictory(arrSrcImg, tds) && isClassClick(tds)) {
+			    document.querySelector('.congratulation').classList.remove('hidden');//Здесь появляется окно с поздравлением
+	        }
 		} else if (tdsClick.length === 2) {
 			tdsClick[0].classList.remove('click');
 			tdsClick[1].classList.remove('click');
 		}
 		
-		tds = getTds();
-		if (checkVictory(arrSrcImg, tds)) {
-			alert('YOU ARE WINNER!!!')
-		}
+		
     });
 });
-
-
 
 
 
