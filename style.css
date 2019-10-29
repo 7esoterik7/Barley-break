@@ -1,0 +1,55 @@
+body {
+	width: 80%;
+	
+	margin: 0 auto;
+	padding: 10px;
+}
+
+img {
+	width: 150px;
+	height: 150px;
+	margin: 0 15%;
+}
+
+button {
+	width: 100px;
+	
+	border-radius: 10px;
+	color: black;
+	background-color: red;
+}
+
+table {
+	width: 80%;
+	margin: 0 auto;
+	border: 3px solid black;
+}
+
+td {
+	border: 1px solid black;
+	text-align: center;
+}
+
+#mix {
+	width: 100px;
+	height: 50px;
+	border-radius: 10px;
+	color: black;
+	background-color: green;
+}
+
+#beginPlay {
+	width: 100px;
+	height: 50px;
+	border-radius: 10px;
+	color: black;
+	background-color: aqua;
+}
+
+.hidden {
+	display: none;
+}
+
+.click {
+	border: 5px dotted red;
+}
