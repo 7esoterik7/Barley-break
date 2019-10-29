@@ -27,7 +27,9 @@ function getTds() {
 
 function click(td) {
 	td.addEventListener('click', function() {
-		td.classList.toggle('click');
+		if (!td.classList.contains('click')) {
+			td.classList.add('click');
+		}
 	});
 }
 
@@ -96,17 +98,20 @@ var beginPlay = document.querySelector('#beginPlay');
 var advice = document.querySelector('#advice');
 var tbody = document.querySelector('tbody');
 var body = document.querySelector('body');
+var congratulation = document.querySelector('.congratulation');
 
 
 buttonMix.addEventListener('click', function() {
+	congratulation.classList.add('hidden');
 	mix();
 });
 
 beginPlay.addEventListener('click', function() {
+	congratulation.classList.add('hidden');
 	buttonMix.classList.add('hidden');
 	beginPlay.classList.add('hidden');
 	advice.classList.remove('hidden');
-	//mix();
+	mix();  //Здесь закомментировать, если надо быстро проверить выигрыш
 	
 	var tds = getTds();
 	
@@ -133,6 +138,9 @@ beginPlay.addEventListener('click', function() {
 			tds = getTds();
 	        if (checkVictory(arrSrcImg, tds) && isClassClick(tds)) {
 			    document.querySelector('.congratulation').classList.remove('hidden');//Здесь появляется окно с поздравлением
+				buttonMix.classList.remove('hidden');
+	            beginPlay.classList.remove('hidden');
+	            advice.classList.add('hidden');
 	        }
 		} else if (tdsClick.length === 2) {
 			tdsClick[0].classList.remove('click');
@@ -142,6 +150,13 @@ beginPlay.addEventListener('click', function() {
 		
     });
 });
+
+/* document.documentElement.addEventListener('click', function() {
+    if (!congratulation.classList.contains('hidden')) {
+		buttonMix.classList.add('hidden');
+	}
+});
+ */
 
 
 
