@@ -1,16 +1,15 @@
 function speech() {
 	var recognition = new webkitSpeechRecognition();
-	recognition.lang = 'en-EN';
+	recognition.lang = 'en-En';
 	
 	recognition.start();
 	
 	recognition.onresult = function(event) {
-		var recSound = event.results[0]['0'].transcript;
-		
 		if (event.results[0].isFinal) {
-			createElement(recSound);
+			console.log(event.results[0]['0'].transcript);
+		    recSound = event.results[0]['0'].transcript;
 		} else {
-			createElement('Я ничего не понял');
+			alert('Повторите. Ничего не понял');
 		}
     }
 }
@@ -20,6 +19,125 @@ function createElement(sound) {
 	h1.textContent = sound;
 	document.querySelector('#words').appendChild(h1);
 }
+
+function shuffle(arr){
+	const randomDigit = arr.length;
+	
+	
+	for (var i = 0; i < randomDigit; i++) {
+		var firstIndex = 0;
+	    var secondIndex = 0;
+		
+		while (firstIndex === secondIndex) {
+		    var firstIndex = Math.floor(Math.random() * randomDigit);
+	        var secondIndex = Math.floor(Math.random() * randomDigit);
+	    }
+		
+		var swap = arr[firstIndex];
+		arr[firstIndex] = arr[secondIndex];
+		arr[secondIndex] = swap;
+	}
+	return arr
+}
+
+
+var word = document.querySelector('.word');
+var wordList = [['имя', 'name'], ['я', 'I'], ['что, какой', 'what']];
+var shuffleWordList = shuffle(wordList);
+
+
+/* word.addEventListener('click', function(event) {
+	if (!shuffleWordList) {
+		
+		console.log('End');
+	}
+	
+	var startWord = shuffleWordList.shift();
+	word.textContent = startWord[0];
+	
+	var recognition = new webkitSpeechRecognition();
+	recognition.lang = 'en-En';
+	recognition.start();
+	recognition.onresult = function(event) {
+		if (event.results[0].isFinal) {
+			
+		    var recSound = event.results[0]['0'].transcript;
+			if (startWord[1] === recSound) {                     //Если сказал правильно
+				word.textContent = 'Правильно! Нажмите здесь'
+			} else {                                             //Если сказал НЕ правильно
+				console.log(startWord[1], recSound, 'NO');
+			}  
+		} else {
+			alert('Повторите. Ничего не понял');
+		}
+    }
+	
+	if (!shuffleWordList) {
+		word.removeEventListener
+		console.log('End');
+	}
+}); */
+
+function translate(event) {
+	
+	if (!shuffleWordList.length) {  	                         //Отменяем обработчик события
+	    word.textContent = 'Вы знаете все слова!'
+		word.removeEventListener('click', translate);
+	} else {console.log('shuffleWordList.length = ' + shuffleWordList.length)} 
+	
+	var countRightWord = 0;
+	var startWord = shuffleWordList.shift();
+	word.textContent = startWord[0];
+	
+	var recognition = new webkitSpeechRecognition();
+	recognition.lang = 'en-En';
+	recognition.start();
+	recognition.onresult = function(event) {
+		if (event.results[0].isFinal) {
+			
+		    var recSound = event.results[0]['0'].transcript;
+			if (startWord[1] === recSound) {                     //Если сказал правильно
+				word.textContent = 'Правильно! Нажмите здесь';
+				countRightWord += 1;
+			} else {                                             //Если сказал НЕ правильно
+				console.log(startWord[1], recSound, 'NO');
+			}  
+		} else {
+			alert('Повторите. Ничего не понял');
+		}
+    }
+	
+}
+
+word.addEventListener('click', translate);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 

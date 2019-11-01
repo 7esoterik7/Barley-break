@@ -1,4 +1,4 @@
-function shuffle(arr) {
+﻿function shuffle(arr) {
 	const randomMultiple = arr.length;
 	for (var i = 0; i < arr.length; i++) {
 		var sel1 = Math.floor(Math.random() * randomMultiple);
@@ -12,7 +12,7 @@ function shuffle(arr) {
 }
 
 function mix() {
-	var mixIndex = shuffle([...Array(tds.length).keys()]);
+	var mixIndex = shuffle([...Array(tds.length).keys()]); // По-моему лишнее
 	for (var i = 0; i < tds.length; i++) {
 	  var img = tds[i].querySelector('img');
 	  img.src = arrSrcImg[mixIndex[i]];
