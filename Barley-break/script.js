@@ -99,7 +99,18 @@ var advice = document.querySelector('#advice');
 var tbody = document.querySelector('tbody');
 var body = document.querySelector('body');
 var congratulation = document.querySelector('.congratulation');
+var soundHide = document.querySelector('.sound');
+var noSound = document.querySelector('#nosound');
 
+soundHide.addEventListener('click', function() {
+	soundHide.classList.add('hidden');
+	noSound.classList.remove('hidden');
+});
+
+noSound.addEventListener('click', function() {
+	soundHide.classList.remove('hidden');
+	noSound.classList.add('hidden');
+});
 
 buttonMix.addEventListener('click', function() {
 	congratulation.classList.add('hidden');
@@ -134,6 +145,10 @@ beginPlay.addEventListener('click', function() {
 			
 			tdsClick[0].classList.remove('click');
 			tdsClick[1].classList.remove('click');
+
+			if (noSound.classList.contains('hidden')) {
+				var sound = new Audio('sound/1.mp3').play();
+			}
 			
 			tds = getTds();
 	        if (checkVictory(arrSrcImg, tds) && isClassClick(tds)) {

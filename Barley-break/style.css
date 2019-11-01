@@ -68,8 +68,14 @@ td {
 	background-color: yellow;
 }
 
-
-
+.sound {
+	width: 70px;
+	height: 70px;
+}
+ #nosound {
+	width: 70px;
+	height: 70px;
+ }
 
 
 
