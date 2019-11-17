@@ -40,47 +40,9 @@ function shuffle(arr){
 	return arr
 }
 
-
-var word = document.querySelector('.word');
-var wordList = [['имя', 'name'], ['я', 'I'], ['что, какой', 'what']];
-var shuffleWordList = shuffle(wordList);
-
-
-/* word.addEventListener('click', function(event) {
-	if (!shuffleWordList) {
-		
-		console.log('End');
-	}
-	
-	var startWord = shuffleWordList.shift();
-	word.textContent = startWord[0];
-	
-	var recognition = new webkitSpeechRecognition();
-	recognition.lang = 'en-En';
-	recognition.start();
-	recognition.onresult = function(event) {
-		if (event.results[0].isFinal) {
-			
-		    var recSound = event.results[0]['0'].transcript;
-			if (startWord[1] === recSound) {                     //Если сказал правильно
-				word.textContent = 'Правильно! Нажмите здесь'
-			} else {                                             //Если сказал НЕ правильно
-				console.log(startWord[1], recSound, 'NO');
-			}  
-		} else {
-			alert('Повторите. Ничего не понял');
-		}
-    }
-	
-	if (!shuffleWordList) {
-		word.removeEventListener
-		console.log('End');
-	}
-}); */
-
 function translate(event) {
 	
-	if (!shuffleWordList.length) {  	                         //Отменяем обработчик события
+	if (!shuffleWordList.length && countRightWord === wordList.length) {  	                         //Отменяем обработчик события
 	    word.textContent = 'Вы знаете все слова!'
 		word.removeEventListener('click', translate);
 	} else {console.log('shuffleWordList.length = ' + shuffleWordList.length)} 
@@ -92,8 +54,10 @@ function translate(event) {
 	var recognition = new webkitSpeechRecognition();
 	recognition.lang = 'en-En';
 	recognition.start();
+
 	recognition.onresult = function(event) {
-		if (event.results[0].isFinal) {
+		console.log(event.results);
+		if (event.results.length === 1) {
 			
 		    var recSound = event.results[0]['0'].transcript;
 			if (startWord[1] === recSound) {                     //Если сказал правильно
@@ -107,7 +71,24 @@ function translate(event) {
 		}
     }
 	
+	recognition.onerror = function() {
+		console.log('Тишина error')
+	}
+	
+	recognition.onaudioend = function() {
+		console.log('Есть какой-то звук')
+	}
+	
+	recognition.onnomatch = function() {
+		console.log('nomatch')
+	}
 }
+
+
+var word = document.querySelector('.word');
+var wordList = [['имя', 'name'], ['я', 'I'], ['что, какой', 'what']];
+var shuffleWordList = shuffle(wordList);
+
 
 word.addEventListener('click', translate);
 

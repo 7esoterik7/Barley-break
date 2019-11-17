@@ -1,0 +1,57 @@
+body {
+	width: 80%;
+	margin: 0 auto;
+}
+
+table {
+	position: relative;
+	left: 10%;
+	width: 300px;
+	height: 375px;
+	border: 2px solid black;
+}
+
+td {
+	width: 75px;
+	height: 75px;
+	border: 2px solid black;
+	text-align: center;
+	font-size: 2em;
+}
+
+#monitor {
+	position: relative;
+	left: 10%;
+	width: 297px;
+	min-height: 140px;
+	border: 2px solid black;
+}
+
+.digit {
+	background-color: yellow;
+}
+
+.enter {
+	background-color: red;
+}
+
+.operator {
+	background-color: aqua;
+}
+
+#input {
+	font-size: 2em;
+	color: green;
+	min-height: 50px;
+}
+
+.result {
+	font-size: 3em;
+	color: blue;
+	min-height: 90px;
+}
+.calculate {
+	font-size: 4em;
+	color: red;
+	text-align: center;
+}
